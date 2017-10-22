@@ -1,0 +1,24 @@
+﻿@model Project.Models.Books
+
+@using(Html.BeginForm("Add","Book"))
+{
+    <table>
+        <tr>
+            <td>@Html.LabelFor(asd => asd.Id)</td>
+            <td>@Html.EditorFor(asd => asd.Id)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(asd=>asd.BookTitle)</td>
+            <td>@Html.EditorFor(asd=>asd.BookTitle)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(asd => asd.BookAuthor)</td>
+            <td>@Html.EditorFor(asd => asd.BookAuthor)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(asd => asd.Qty)</td>
+            <td>@Html.EditorFor(asd => asd.Qty)</td>
+        </tr>
+    </table>
+<button type="submit">EDIT</button>
+}

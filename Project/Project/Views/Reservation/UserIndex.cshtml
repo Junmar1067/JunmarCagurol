@@ -1,0 +1,70 @@
+﻿@model Project.Models.Information
+@{
+    ViewBag.Title = "View";
+}
+@Html.ActionLink("Home","HomeIndex","Home")
+@Html.ActionLink("Logout","Logout","Home")
+<br />
+<br/>
+<h2>
+    @foreach (var x in Model.Account)
+    {
+        @Html.DisplayFor(item => x.Name)<text>, reserve a book now!</text>
+        <br />
+    }
+</h2>
+<br />
+<br />
+    <table>
+        <tr>
+            <td></td><td><b>Book Title</td><td><b>Quantity</td><td></td>
+        </tr>
+        @foreach (var x in Model.Book)
+        {
+            using (Html.BeginForm("Reserve", "Reservation", new
+             {
+                 AccountId = Model.Account.FirstOrDefault().AccountId,
+                 BookId = x.BookId, name = Model.Account.FirstOrDefault().Name, title = x.Title, date = DateTime.Now
+              }))
+             {
+                <tr>
+                <td>@Html.DisplayFor(item => x.BookId)</td>
+                <td>@Html.DisplayFor(item => x.Title)</td>
+                <td>@Html.TextBox("Qty",null,new {style = "width:50px" })</td> 
+                <td><input type='submit' value='Reserve' /></td>
+                </tr>
+               }
+           }
+    </table>
+  
+    <br />
+
+
+<br />
+<br />
+<br />
+<table style="width:40%">
+    <tr>
+        <td><b>Res Id</td>
+        <td><b>Borrower</td>
+        <td><b>Book Title</td>
+        <td><b>Quantity</td>
+        <td><b>Date</td>
+        <td></td>
+    </tr>
+@foreach (var x in Model.BookReservation)
+{
+    <tr>
+    <td>@Html.DisplayFor(item => x.ReservationId)</td>
+    <td>@Html.DisplayFor(item => x.BorrowersName)</td>
+    <td>@Html.DisplayFor(item => x.BookTitle)</td>
+    <td>@Html.DisplayFor(item => x.Quantity)</td>
+    <td>@Html.DisplayFor(item => x.ReservationDate)</td>
+    <td>@Html.ActionLink("Cancel", "Cancel", new { Id = x.ReservationId })</td>
+    </tr>
+}
+    </table>
+<br />
+<br />
+<br />
+

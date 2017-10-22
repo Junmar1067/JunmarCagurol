@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Project.Models.Accounts>
+
+@Html.ActionLink("Home","Home","Admin")
+@Html.ActionLink("Logout","Logout","Home")
+<br /><br />
+<form method="get" action="@Url.Action("Index", "Admin")">
+    <label>Search Name</label>
+    <input type="text" name="search" />
+    <button type="submit">Search</button>
+</form>
+<br />
+@Html.ActionLink("Add", "Add")
+<br />
+<br/>                                       
+    <table style="width:50%"> 
+        <tr>
+                <td><b>Id</td>
+                <td><b>Name</td>
+                <td><b>Username</td>
+                <td><b>Password</td>
+                <td><b>Age</td>
+                <td><b>Address</td>
+                <td><b></td><td></td>
+        </tr>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@Html.DisplayFor(asdf => item.Id)</td>
+            <td>@Html.DisplayFor(asdf => item.Name)</td>
+            <td>@Html.DisplayFor(asdf => item.Username)</td>
+            <td>@Html.DisplayFor(asdf => item.Password)</td>
+            <td>@Html.DisplayFor(asdf => item.Age)</td>
+            <td>@Html.DisplayFor(asdf => item.Address)</td>
+
+            <td>@Html.ActionLink("Edit", "Edit", new { Id = item.Id })</td>
+
+            <td>@Html.ActionLink("Delete", "Delete", new { Id = item.Id })</td>
+        </tr>
+        }
+    </table>
+
+    
+    
+    
+    <br />
+
+
+

@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Project.Models.Reservations>
+@{
+    ViewBag.Title = "MyReservation";
+}
+@Html.ActionLink("Home","HomeIndex","Home")
+@Html.ActionLink("Logout","Logout","Home")
+
+<h2>My Book Reservations</h2>
+
+<br />
+<table style="width:40%">
+    <tr>
+        <td><b>Id</td>
+        <td><b>Book Title</td>
+        <td><b>Quantity</td>
+        <td><b>Reservation Date</td>
+        <td></td>
+    </tr>
+@foreach (var x in Model)
+{
+    <tr>
+        <td>@Html.DisplayFor(item => x.Id)</td>
+        <td>@Html.DisplayFor(item => x.BookTitle)</td>
+        <td> @Html.DisplayFor(item => x.Qty)</td>
+        <td>@Html.DisplayFor(item => x.ReserveDate)</td>
+        <td>@Html.ActionLink("Delete", "Delete",  new { Id = x.Id })</td>
+    </tr>
+}
+    </table>
+<br />

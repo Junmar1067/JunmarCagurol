@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MyDatabaseModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="MyEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Accounts" EntityType="MyDatabaseModel.Account" />
+    <EntitySet Name="Books" EntityType="MyDatabaseModel.Book" />
+    <EntitySet Name="Reservations" EntityType="MyDatabaseModel.Reservation" />
+    <AssociationSet Name="fk1" Association="MyDatabaseModel.fk1">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="Reservation" EntitySet="Reservations" />
+    </AssociationSet>
+    <AssociationSet Name="fk2" Association="MyDatabaseModel.fk2">
+      <End Role="Books" EntitySet="Books" />
+      <End Role="Reservation" EntitySet="Reservations" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="AccountId" />
+    </Key>
+    <Property Name="AccountId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Password" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Name" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Address" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Age" Type="Int32" />
+    <NavigationProperty Name="Reservations" Relationship="MyDatabaseModel.fk1" FromRole="Accounts" ToRole="Reservation" />
+  </EntityType>
+  <EntityType Name="Book">
+    <Key>
+      <PropertyRef Name="BookId" />
+    </Key>
+    <Property Name="BookId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <Property Name="Author" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+    <NavigationProperty Name="Reservations" Relationship="MyDatabaseModel.fk2" FromRole="Books" ToRole="Reservation" />
+  </EntityType>
+  <EntityType Name="Reservation">
+    <Key>
+      <PropertyRef Name="ReservationId" />
+    </Key>
+    <Property Name="ReservationId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="AccountId" Type="Int32" Nullable="false" />
+    <Property Name="BookId" Type="Int32" Nullable="false" />
+    <Property Name="ReservationDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Account" Relationship="MyDatabaseModel.fk1" FromRole="Reservation" ToRole="Accounts" />
+    <NavigationProperty Name="Book" Relationship="MyDatabaseModel.fk2" FromRole="Reservation" ToRole="Books" />
+  </EntityType>
+  <Association Name="fk1">
+    <End Role="Accounts" Type="MyDatabaseModel.Account" Multiplicity="1" />
+    <End Role="Reservation" Type="MyDatabaseModel.Reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="AccountId" />
+      </Principal>
+      <Dependent Role="Reservation">
+        <PropertyRef Name="AccountId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk2">
+    <End Role="Books" Type="MyDatabaseModel.Book" Multiplicity="1" />
+    <End Role="Reservation" Type="MyDatabaseModel.Reservation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Books">
+        <PropertyRef Name="BookId" />
+      </Principal>
+      <Dependent Role="Reservation">
+        <PropertyRef Name="BookId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

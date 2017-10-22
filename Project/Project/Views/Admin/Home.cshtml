@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+
+@Html.ActionLink("Logout", "Logout", "Home")
+@if (Session["LogedName"] != null)
+{ 
+    <text>
+        <h1>Welcome @Session["LogedName"].ToString()!</h1>
+    </text>
+    <text>
+        <h2>Manage @Html.ActionLink("Accounts", "Index", "Admin")</h2>
+    </text>
+    <text>
+        <h2>Manage @Html.ActionLink("Books", "Index", "Book")</h2>
+    </text>
+    <text>
+        <h2>Manage @Html.ActionLink("Reservations", "Index", "Reservation")</h2>
+    </text>
+}

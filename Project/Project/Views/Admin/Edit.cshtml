@@ -1,0 +1,32 @@
+﻿@model Project.Models.Accounts
+
+@using(Html.BeginForm("Add","Admin"))
+{
+    <table>
+        <tr>
+            <td>@Html.LabelFor(asd => asd.Id)</td>
+            <td>@Html.EditorFor(asd => asd.Id)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(asd=>asd.Username)</td>
+            <td>@Html.EditorFor(asd=>asd.Username)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(asd => asd.Password)</td>
+            <td>@Html.EditorFor(asd => asd.Password)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(asd => asd.Name)</td>
+            <td>@Html.EditorFor(asd => asd.Name)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(asd => asd.Age)</td>
+            <td>@Html.EditorFor(asd => asd.Age)</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(asd => asd.Address)</td>
+            <td>@Html.EditorFor(asd => asd.Address) </td>
+        </tr>
+    </table>
+<button type="submit">EDIT</button>
+}

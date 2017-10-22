@@ -1,0 +1,40 @@
+﻿@model Project.Models.Accounts
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm("Login", "Home", FormMethod.Post))
+{ 
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(false)
+
+    if(@ViewBag.Message != null)
+    {
+        <div style="border:1px solid red">
+            @ViewBag.Message
+        </div>
+    }
+    <table>
+        <tr>
+            <td><label>Username: </label></td>
+            <td colspan="2"><input type="text" name="username" /></td>
+            <td>@Html.ValidationMessageFor(a=>a.Username)</td>
+        </tr>
+        <tr></tr>
+        <tr>
+            <td><label>Password: </label></td>
+            <td colspan="2"><input type="password" name="password" /></td>
+            <td>@Html.ValidationMessageFor(a=> a.Password)</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="Login" /> 
+            </td>
+            <td><h3>@Html.ActionLink("Sign-up", "SignUp", "Home")</h3></td>
+        </tr>
+    </table>
+}

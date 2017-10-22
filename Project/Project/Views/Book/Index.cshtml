@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Project.Models.Books>
+
+@Html.ActionLink("Home","Home","Admin") <nbsp>     </nbsp>
+@Html.ActionLink("Logout","Logout","Home")
+<br /><br />
+<form method="get" action="@Url.Action("Index", "Book")">
+    <label>Search Book Title</label>
+    <input type="text" name="search" />
+    <button type="submit">Search</button>
+</form>
+<br />
+@Html.ActionLink("Add", "Add")
+<br />
+<br/>                                       
+    <table style="width:50%"> 
+        <tr>
+                <td><b>Book Id</td>
+                <td><b>Title</td>
+                <td><b>Author</td>
+                <td><b>Quantity</td>
+                <td><b></td><td></td>
+        </tr>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@Html.DisplayFor(asdf => item.Id)</td>
+            <td>@Html.DisplayFor(asdf => item.BookTitle)</td>
+            <td>@Html.DisplayFor(asdf => item.BookAuthor)</td>
+            <td>@Html.DisplayFor(asdf => item.Qty)</td>
+
+            <td>@Html.ActionLink("Edit", "Edit", new { Id = item.Id })</td>
+
+            <td>@Html.ActionLink("Delete", "Delete", new { Id = item.Id })</td>
+        </tr>
+        }
+    </table>
+
+    
+    
+    
+    <br />
+
+
+
